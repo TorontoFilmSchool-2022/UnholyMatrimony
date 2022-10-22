@@ -1,5 +1,5 @@
 // <header>
-// Description:  Walker behavior script.
+// Description:  Enemy walker behavior script.
 // Created By  : Brett Penney   (Brett.Penney@hotmail.com)
 // Created On  : 2022/10/21
 // Modified By : 
@@ -13,18 +13,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Walker : MonoBehaviour
+public class Walker : Enemy
 {
-
+	
 	#region Static and Private variables/Fields/Properties
-
+	private Vector3 playerPosition;
 
 	#endregion
 
 
 
 	#region Public/Inspector variables
-
+	public Transform playerTransform;
+	
+	
 
 	#endregion
 
@@ -46,7 +48,12 @@ public class Walker : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
+		if (GameObject.FindGameObjectWithTag("Player"))
+        {
+			// Allows the enemy to chase the player.
+			playerPosition = new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z);
+			transform.position = Vector3.MoveTowards(transform.position, playerPosition, movementSpeed);
+		}
 	}
 
 	#endregion

@@ -26,12 +26,12 @@ public class Enemy : MonoBehaviour
 
 	#region Public/Inspector variables
 	 public int health;
-	 public int movementSpeed;
+	 public float movementSpeed;
      public int attackDamage;
 	 public float attackSpeed;
 	 public float attackRange;
-	 public float betweenEnemyDistance; // We could have a set distance to keep the enemies apart from eachother to prevent overlapping of the 3D models.
-	 public float betweenPlayerDistance;  // We could have a set distance to keep the enemies apart from the player to prevent overlapping of the 3D models.
+	 public float minDistance; // We could have a set distance to keep the enemies apart from eachother to prevent overlapping of the 3D models.
+	 public float maxDistance;  // We could have a set distance to keep the enemies apart from the player to prevent overlapping of the 3D models.
 	 public GameObject player;
 
 	#endregion
@@ -59,13 +59,13 @@ public class Enemy : MonoBehaviour
 	}
 	void EnemyDistance()
 	{
-
+	
 		// Write code that prevents 3D models of enemies from overlapping. So that the player can see what all the enemies are doing.
 
 	}
-	void PlayerDistance()
+	void BetweenPlayerAndEnemyDistance()
     {
-
+		
 		// Write code that prevents 3D models of enemies from overlapping with the player. So that the player can see what all the enemies are doing.
 		
 	}

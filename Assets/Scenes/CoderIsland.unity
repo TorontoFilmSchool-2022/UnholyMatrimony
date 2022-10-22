@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2160.4053, g: 2264.6074, b: 3288.0938, a: 1}
+  m_IndirectSpecularColor: {r: 2160.1514, g: 2266.334, b: 3295.6055, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -108,7 +108,7 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 45
+    agentSlope: 50
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -1119,7 +1119,6 @@ GameObject:
   - component: {fileID: 1330808553}
   - component: {fileID: 1330808552}
   - component: {fileID: 1330808551}
-  - component: {fileID: 1330808550}
   - component: {fileID: 1330808549}
   m_Layer: 0
   m_Name: Walker Placeholder
@@ -1155,26 +1154,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1180a8562f4c75c4fa40abf6ea7725d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1330808550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330808547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0966481be93a7764087a96d643a60d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  movementSpeed: 3
-  attackDamage: 5
-  attackSpeed: 5
-  attackRange: 5
-  betweenEnemyDistance: 3
-  betweenPlayerDistance: 3
+  health: 0
+  movementSpeed: 0.1
+  attackDamage: 0
+  attackSpeed: 0
+  attackRange: 0
+  minDistance: 0
+  maxDistance: 0
   player: {fileID: 6694949440431829559}
+  playerTransform: {fileID: 6314870932944185485}
 --- !u!195 &1330808551
 NavMeshAgent:
   m_ObjectHideFlags: 0
