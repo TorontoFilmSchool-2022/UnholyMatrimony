@@ -69,6 +69,17 @@ public class Enemy : MonoBehaviour
 		// Write code that prevents 3D models of enemies from overlapping with the player. So that the player can see what all the enemies are doing.
 		
 	}
+
+	/*private void avoidOverlap(Enemy other)
+	{
+		//Working on seperating the models from overlapping.
+		if (this.x == other.x)
+		{ //or in some radius of this
+			this.renderx += 3; //renderx is the position where it is rendered
+		}
+	}*/
+
+
 	#endregion
 
 

@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Walker : Enemy
+public class Fodder : Enemy
 {
 	
 	#region Static and Private variables/Fields/Properties
@@ -54,6 +54,11 @@ public class Walker : Enemy
 			playerPosition = new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z);
 			transform.position = Vector3.MoveTowards(transform.position, playerPosition, movementSpeed);
 		}
+		if (health <= 0)
+        {
+			Destroy(gameObject);
+		}
+
 	}
 
 	#endregion
