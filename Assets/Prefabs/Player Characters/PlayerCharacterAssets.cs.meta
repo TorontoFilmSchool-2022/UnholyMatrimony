@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d66afd0e2c1beb548acf14f8a1eccf17
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - AvatarUnity: {fileID: 9000000, guid: 36078ab0369161e49a29d349ae3e0739, type: 3}
+  - AvatarScale: {fileID: 9000000, guid: 4a77858ea34d3164ba7c7f99cc2cb75d, type: 3}
+  - AvatarMannequin: {fileID: 9000000, guid: 66f757dea1a3b5d4680e6f2b2a6e30be, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

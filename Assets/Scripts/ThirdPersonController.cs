@@ -97,6 +97,9 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private int _animIDVerticalInput;
+        private int _animIDHorizontalInput;
+        private int _animIDAngledStrafe;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -135,7 +138,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -173,6 +176,10 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            _animIDVerticalInput = Animator.StringToHash("VerticalInput");
+            _animIDHorizontalInput = Animator.StringToHash("HorizontalInput");
+            _animIDAngledStrafe = Animator.StringToHash("AngledStrafe");
+
         }
 
         private void GroundedCheck()
@@ -255,12 +262,19 @@ namespace StarterAssets
             // if there is a move input rotate player when the player is moving
             if (_input.move != Vector2.zero)
             {
+                //_targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
+                //                  _mainCamera.transform.eulerAngles.y;
+                //float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                //    RotationSmoothTime);
+
+                //// rotate to face input direction relative to camera position
+                //transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                   _mainCamera.transform.eulerAngles.y;
-                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                    RotationSmoothTime);
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _mainCamera.transform.eulerAngles.y, ref _rotationVelocity, RotationSmoothTime);
 
-                // rotate to face input direction relative to camera position
+                // rotate to face camera look direction
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
@@ -271,11 +285,21 @@ namespace StarterAssets
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
+
             // update animator if using character
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+
+                _animator.SetFloat(_animIDVerticalInput, _input.move.y);
+                _animator.SetFloat(_animIDHorizontalInput, _input.move.x);
+
+                // Detect Angled Strafe
+                if (_input.move.x != 0 && _input.move.y != 0)
+                    _animator.SetBool(_animIDAngledStrafe, true);
+                else
+                    _animator.SetBool(_animIDAngledStrafe, false);
             }
         }
 
