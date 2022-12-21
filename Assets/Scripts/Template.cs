@@ -1,6 +1,6 @@
 // <header>
 // Description:  Generic script in game functionality and game systems. 
-// Created By  : Othman Arnaout   (arnaout.othman@gmail.com)
+// Created By  : Othman Arnaout (arnaout.othman@gmail.com)
 // Created On  : 2022/10/10
 // Modified By : 
 // Modified On : 
@@ -16,14 +16,14 @@ using UnityEngine;
 public class Template : MonoBehaviour
 {
 
-	#region Static and Private variables/Fields/Properties
+	#region Static and Private Variables/Fields/Properties
 
 
 	#endregion
 
 
 
-	#region Public/Inspector variables
+	#region Public Variables
 
 
 	#endregion
@@ -32,22 +32,20 @@ public class Template : MonoBehaviour
 
 	#region Private Methods - Unity methods
 	
-	void Awake()
-	{
+	//void Awake()
+	//{
 		
-	}
+	//}
 	
-	// Start is called before the first frame update
-	void Start()
-	{
+	//void Start()
+	//{
         
-	}
+	//}
 
-	// Update is called once per frame
-	void Update()
-	{
+	//void Update()
+	//{
         
-	}
+	//}
 	
 	#endregion
 
