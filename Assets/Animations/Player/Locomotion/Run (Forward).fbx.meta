@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 4b4bc0169b466fc468ecbf1aeaaebfe4
+guid: e75f0f380b2f9e342b29823883eee84e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: 2-Handed strafe (Left-Fast)
+    second: Run (Forward)
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 2-Handed strafe (Left-Fast)
+      name: Run (Forward)
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 17
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

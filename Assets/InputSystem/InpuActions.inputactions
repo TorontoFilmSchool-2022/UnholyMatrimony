@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "InpuActions",
     "maps": [
         {
             "name": "Player",
@@ -293,7 +293,18 @@
                 {
                     "name": "",
                     "id": "c17434fa-1dc7-4988-bdfd-44dbaee18bc3",
-                    "path": "",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e616e43e-8b92-462c-b885-ea38c34e9ff8",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

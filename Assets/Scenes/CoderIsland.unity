@@ -11511,7 +11511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5.335
-  SprintSpeed: 5.335
+  DashSpeed: 5.335
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
@@ -11531,7 +11531,7 @@ MonoBehaviour:
   Gravity: -15
   JumpTimeout: 0.3
   FallTimeout: 0.15
-  AttackTimeout: 0.15
+  AttackTimeout: 3
   Grounded: 1
   IsAttacking: 0
   IsReflecting: 0
@@ -11804,9 +11804,10 @@ MonoBehaviour:
   move: {x: 0, y: 0}
   look: {x: 0, y: 0}
   jump: 0
-  sprint: 0
+  dash: 0
   attack: 0
   reflect: 0
+  pause: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1

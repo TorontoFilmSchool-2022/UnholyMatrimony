@@ -101,8 +101,6 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
-        private float _attackTimeoutDelta;
-        private float _reflectTimeoutDelta;
 
         // animation IDs
         private int _animIDSpeed;
@@ -179,6 +177,7 @@ namespace StarterAssets
             Move();
             AttackCheck();
             Attack();
+            Reflect();
         }
 
         private void LateUpdate()
@@ -393,10 +392,10 @@ namespace StarterAssets
 
         private void Attack()
         {
-            if (IsAttacking)
+            if (!IsAttacking)
             {
                 // Attack
-                if (_input.attack && _attackTimeoutDelta <= 0.0f)
+                if (_input.attack)
                 {
                     //DO ATTACK HERE
 
@@ -407,25 +406,31 @@ namespace StarterAssets
                     }
                 }
 
-                // attack timeout
-                if (_attackTimeoutDelta >= 0.0f)
-                {
-                    _attackTimeoutDelta -= Time.deltaTime;
-                }
-            }
-            else
-            {
-                // reset the attack timeout timer
-                _attackTimeoutDelta = AttackTimeout;
-
-                // if we are attacking, do not attack
+                // if we are attacking, reset attack input state
                 _input.attack = false;
             }
+
         }
 
         private void Reflect()
         {
+            if (!IsReflecting)
+            {
+                // Attack
+                if (_input.reflect)
+                {
+                    //DO ATTACK HERE
 
+                    // update animator if using character
+                    if (_hasAnimator)
+                    {
+                        _animator.SetTrigger(_animIDReflect);
+                    }
+                }
+
+                // if we are attacking, reset attack input state
+                _input.reflect = false;
+            }
         }
 
         private void AttackCheck()

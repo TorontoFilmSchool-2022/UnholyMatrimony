@@ -14,6 +14,7 @@ namespace StarterAssets
 		public bool dash;
 		public bool attack;
 		public bool reflect;
+		public bool pause;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -55,37 +56,61 @@ namespace StarterAssets
 		{
 			ReflectInput(value.isPressed);
 		}
+
+		public void OnPause(InputValue value)
+        {
+			PauseInput(value.isPressed);
+        }
 #endif
 
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
+
+			//Debug.Log("Move Input");
 		} 
 
 		public void LookInput(Vector2 newLookDirection)
 		{
 			look = newLookDirection;
+
+			//Debug.Log("Look Input");
 		}
 
 		public void JumpInput(bool newJumpState)
 		{
 			jump = newJumpState;
+
+			//Debug.Log("Jump Input");
 		}
 
 		public void DashInput(bool newDashState)
 		{
 			dash = newDashState;
+
+			//Debug.Log("Dash Input");
 		}
 
 		public void AttackInput(bool newAttackState)
         {
 			attack = newAttackState;
-        }
+
+			//Debug.Log("Attack Input");
+		}
 
 		public void ReflectInput(bool newReflectState)
 		{
 			reflect = newReflectState;
+
+			//Debug.Log("Reflect Input");
+		}
+
+		public void PauseInput(bool newPauseState)
+        {
+			pause = newPauseState;
+
+			//Debug.Log("Pause Input");
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
