@@ -5,13 +5,15 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
-	public class StarterAssetsInputs : MonoBehaviour
+	public class InputEventManager : MonoBehaviour
 	{
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
-		public bool sprint;
+		public bool dash;
+		public bool attack;
+		public bool reflect;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -39,9 +41,19 @@ namespace StarterAssets
 			JumpInput(value.isPressed);
 		}
 
-		public void OnSprint(InputValue value)
+		public void OnDash(InputValue value)
 		{
-			SprintInput(value.isPressed);
+			DashInput(value.isPressed);
+		}
+
+		public void OnAttack(InputValue value)
+		{
+			AttackInput(value.isPressed);
+		}
+
+		public void OnReflect(InputValue value)
+		{
+			ReflectInput(value.isPressed);
 		}
 #endif
 
@@ -61,9 +73,19 @@ namespace StarterAssets
 			jump = newJumpState;
 		}
 
-		public void SprintInput(bool newSprintState)
+		public void DashInput(bool newDashState)
 		{
-			sprint = newSprintState;
+			dash = newDashState;
+		}
+
+		public void AttackInput(bool newAttackState)
+        {
+			attack = newAttackState;
+        }
+
+		public void ReflectInput(bool newReflectState)
+		{
+			reflect = newReflectState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

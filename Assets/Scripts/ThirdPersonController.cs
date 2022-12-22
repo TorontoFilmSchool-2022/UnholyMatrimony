@@ -16,10 +16,10 @@ namespace StarterAssets
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        public float MoveSpeed = 5.335f;
 
         [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        public float DashSpeed = 5.335f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -46,9 +46,20 @@ namespace StarterAssets
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
 
+        [Tooltip("Time required to pass before a consecutive attack can be made. Useful for controlling attack speed")]
+        public float AttackTimeout = 0.15f;
+
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
         public bool Grounded = true;
+
+        [Header("Player Attacking")]
+        [Tooltip("If the character attack animation is playing or not.")]
+        public bool IsAttacking = false;
+
+        [Header("Player Reflecting")]
+        [Tooltip("If the character reflect animation is playing or not.")]
+        public bool IsReflecting = false;
 
         [Tooltip("Useful for rough ground")]
         public float GroundedOffset = -0.14f;
@@ -90,6 +101,8 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
+        private float _attackTimeoutDelta;
+        private float _reflectTimeoutDelta;
 
         // animation IDs
         private int _animIDSpeed;
@@ -100,13 +113,15 @@ namespace StarterAssets
         private int _animIDVerticalInput;
         private int _animIDHorizontalInput;
         private int _animIDAngledStrafe;
+        private int _animIDAttack;
+        private int _animIDReflect;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
         private Animator _animator;
         private CharacterController _controller;
-        private StarterAssetsInputs _input;
+        private InputEventManager _input;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
@@ -141,7 +156,7 @@ namespace StarterAssets
 
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
-            _input = GetComponent<StarterAssetsInputs>();
+            _input = GetComponent<InputEventManager>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -162,6 +177,8 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            AttackCheck();
+            Attack();
         }
 
         private void LateUpdate()
@@ -179,6 +196,8 @@ namespace StarterAssets
             _animIDVerticalInput = Animator.StringToHash("VerticalInput");
             _animIDHorizontalInput = Animator.StringToHash("HorizontalInput");
             _animIDAngledStrafe = Animator.StringToHash("AngledStrafe");
+            _animIDAttack = Animator.StringToHash("Attack");
+            _animIDReflect = Animator.StringToHash("Reflect");
 
         }
 
@@ -221,7 +240,7 @@ namespace StarterAssets
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            float targetSpeed = _input.dash ? DashSpeed : MoveSpeed;
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -370,6 +389,48 @@ namespace StarterAssets
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
+        }
+
+        private void Attack()
+        {
+            if (IsAttacking)
+            {
+                // Attack
+                if (_input.attack && _attackTimeoutDelta <= 0.0f)
+                {
+                    //DO ATTACK HERE
+
+                    // update animator if using character
+                    if (_hasAnimator)
+                    {
+                        _animator.SetTrigger(_animIDAttack);
+                    }
+                }
+
+                // attack timeout
+                if (_attackTimeoutDelta >= 0.0f)
+                {
+                    _attackTimeoutDelta -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                // reset the attack timeout timer
+                _attackTimeoutDelta = AttackTimeout;
+
+                // if we are attacking, do not attack
+                _input.attack = false;
+            }
+        }
+
+        private void Reflect()
+        {
+
+        }
+
+        private void AttackCheck()
+        {
+
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

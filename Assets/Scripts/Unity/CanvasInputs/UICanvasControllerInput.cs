@@ -6,7 +6,7 @@ namespace StarterAssets
     {
 
         [Header("Output")]
-        public StarterAssetsInputs starterAssetsInputs;
+        public InputEventManager starterAssetsInputs;
 
         public void VirtualMoveInput(Vector2 virtualMoveDirection)
         {
@@ -25,7 +25,7 @@ namespace StarterAssets
 
         public void VirtualSprintInput(bool virtualSprintState)
         {
-            starterAssetsInputs.SprintInput(virtualSprintState);
+            starterAssetsInputs.DashInput(virtualSprintState);
         }
         
     }
